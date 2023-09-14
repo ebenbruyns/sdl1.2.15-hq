@@ -32,4 +32,4 @@ extern void WIN_SetWMCaption(_THIS, const char *title, const char *icon);
 extern int WIN_IconifyWindow(_THIS);
 extern SDL_GrabMode WIN_GrabInput(_THIS, SDL_GrabMode mode);
 extern int WIN_GetWMInfo(_THIS, SDL_SysWMinfo *info);
-
+extern int WIN_GetDesktopMode(_THIS, int *width, int *height);

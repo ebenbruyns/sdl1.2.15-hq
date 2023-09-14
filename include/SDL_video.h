@@ -325,6 +325,14 @@ extern DECLSPEC int SDLCALL SDL_VideoModeOK(int width, int height, int bpp, Uint
 extern DECLSPEC SDL_Rect ** SDLCALL SDL_ListModes(SDL_PixelFormat *format, Uint32 flags);
 
 /**
+ * If possible, retrieves the current resolution of the user's display. If this
+ * operation is supported and succeeds, the width and height are written to the
+ * values pointed to by the parameters and 1 is returned. If unsupported or
+ * unsuccessful, the pointed to values are not touched and 0 is returned.
+ */
+extern DECLSPEC int SDLCALL SDL_GetDesktopMode(int *width, int *height);
+
+/**
  * Set up a video mode with the specified width, height and bits-per-pixel.
  *
  * If 'bpp' is 0, it is treated as the current display bits per pixel.

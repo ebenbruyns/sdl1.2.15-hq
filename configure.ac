@@ -2985,6 +2985,11 @@ esac
 dnl Do this on all platforms, after everything else.
 CheckWarnAll
 
+if test \( x$enable_video = xyes -a x$enable_video_opengl = xyes \) -o x$video_opengl = xyes; then
+    AC_DEFINE(SDL_VIDEO_DRIVER_OPENGLHQ)
+    SOURCES="$SOURCES $srcdir/src/video/openglhq/SDL*.c"
+fi
+
 # Verify that we have all the platform specific files we need
 
 if test x$enable_joystick = xyes; then

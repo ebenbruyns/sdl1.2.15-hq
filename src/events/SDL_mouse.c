@@ -109,6 +109,8 @@ void SDL_SetMouseRange(int maxX, int maxY)
 	SDL_MouseMaxY = (Sint16)maxY;
 }
 
+void (*SDL_MouseFilter)(int relative, Sint16 *x, Sint16 *y) = NULL;
+
 /* These are global for SDL_eventloop.c */
 int SDL_PrivateMouseMotion(Uint8 buttonstate, int relative, Sint16 x, Sint16 y)
 {
@@ -121,6 +123,8 @@ int SDL_PrivateMouseMotion(Uint8 buttonstate, int relative, Sint16 x, Sint16 y)
 	if ( ! buttonstate ) {
 		buttonstate = SDL_ButtonState;
 	}
+
+	if (SDL_MouseFilter != NULL) SDL_MouseFilter(relative, &x, &y);
 
 	Xrel = x;
 	Yrel = y;
@@ -202,6 +206,8 @@ int SDL_PrivateMouseButton(Uint8 state, Uint8 button, Sint16 x, Sint16 y)
 	Uint8 buttonstate;
 
 	SDL_memset(&event, 0, sizeof(event));
+
+	if (SDL_MouseFilter != NULL) SDL_MouseFilter(0, &x, &y);
 
 	/* Check parameters */
 	if ( x || y ) {

@@ -134,6 +134,9 @@ static VideoBootStrap *bootstrap[] = {
 #if SDL_VIDEO_DRIVER_DUMMY
 	&DUMMY_bootstrap,
 #endif
+#if SDL_VIDEO_DRIVER_OPENGLHQ
+	&OPENGLHQ_bootstrap,
+#endif
 	NULL
 };
 
@@ -351,6 +354,24 @@ SDL_Rect ** SDL_ListModes (SDL_PixelFormat *format, Uint32 flags)
 		modes = video->ListModes(this, format, flags);
 	}
 	return(modes);
+}
+
+/*
+ * If possible, retrieves the current resolution of the user's display. If this
+ * operation is supported and succeeds, the width and height are written to the
+ * values pointed to by the parameters and 1 is returned. If unsupported or
+ * unsuccessful, the pointed to values are not touched and 0 is returned.
+ */
+int SDL_GetDesktopMode(int *width, int *height)
+{
+	SDL_VideoDevice *video = current_video;
+	SDL_VideoDevice *this  = current_video;
+
+	if (video && video->GetDesktopMode) {
+		return video->GetDesktopMode(this, width, height);
+	} else {
+		return 0;
+	}
 }
 
 /*

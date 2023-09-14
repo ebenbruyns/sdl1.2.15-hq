@@ -63,6 +63,9 @@ struct SDL_VideoDevice {
 	 */
 	SDL_Rect **(*ListModes)(_THIS, SDL_PixelFormat *format, Uint32 flags);
 
+	/* Get the current resolution of the user's display. */
+	int (*GetDesktopMode)(_THIS, int *width, int *height);
+
 	/* Set the requested video mode, returning a surface which will be
 	   set to the SDL_VideoSurface.  The width and height will already
 	   be verified by ListModes(), and the video subsystem is free to
@@ -417,6 +420,9 @@ extern VideoBootStrap CACA_bootstrap;
 #endif
 #if SDL_VIDEO_DRIVER_DUMMY
 extern VideoBootStrap DUMMY_bootstrap;
+#endif
+#if SDL_VIDEO_DRIVER_OPENGLHQ
+extern VideoBootStrap OPENGLHQ_bootstrap;
 #endif
 
 /* This is the current video device */

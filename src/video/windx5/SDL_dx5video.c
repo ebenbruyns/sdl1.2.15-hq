@@ -599,6 +599,7 @@ static SDL_VideoDevice *DX5_CreateDevice(int devindex)
 	/* Set the function pointers */
 	device->VideoInit = DX5_VideoInit;
 	device->ListModes = DX5_ListModes;
+	device->GetDesktopMode = WIN_GetDesktopMode;
 	device->SetVideoMode = DX5_SetVideoMode;
 	device->UpdateMouse = WIN_UpdateMouse;
 	device->CreateYUVOverlay = DX5_CreateYUVOverlay;

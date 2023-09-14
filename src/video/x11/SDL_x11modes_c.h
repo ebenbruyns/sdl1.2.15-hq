@@ -35,6 +35,7 @@
 extern int X11_GetVideoModes(_THIS);
 extern SDL_Rect **X11_ListModes(_THIS, SDL_PixelFormat *format, Uint32 flags);
 extern void X11_FreeVideoModes(_THIS);
+extern int X11_GetDesktopMode(_THIS, int *width, int *height);
 extern int X11_ResizeFullScreen(_THIS);
 extern void X11_WaitMapped(_THIS, Window win);
 extern void X11_WaitUnmapped(_THIS, Window win);

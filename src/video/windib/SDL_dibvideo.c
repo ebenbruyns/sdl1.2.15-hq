@@ -177,6 +177,7 @@ static SDL_VideoDevice *DIB_CreateDevice(int devindex)
 	/* Set the function pointers */
 	device->VideoInit = DIB_VideoInit;
 	device->ListModes = DIB_ListModes;
+	device->GetDesktopMode = WIN_GetDesktopMode;
 	device->SetVideoMode = DIB_SetVideoMode;
 	device->UpdateMouse = WIN_UpdateMouse;
 	device->SetColors = DIB_SetColors;

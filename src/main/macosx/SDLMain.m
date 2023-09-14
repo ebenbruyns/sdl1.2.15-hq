@@ -376,6 +376,9 @@ static int IsFinderLaunch(const int argc, char **argv)
 /* Main entry point to executable - should *not* be SDL_main! */
 int main (int argc, char **argv)
 {
+	/* Enable multithreading as early as possible */
+ 	[NSThread detachNewThreadSelector:@selector(self) toTarget:[NSString string] withObject:nil];
+
     /* Copy the arguments into a global variable */
     if (IsFinderLaunch(argc, argv)) {
         gArgv = (char **) SDL_malloc(sizeof (char *) * 2);

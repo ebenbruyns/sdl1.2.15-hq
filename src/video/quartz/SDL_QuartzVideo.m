@@ -24,6 +24,18 @@
 #include "SDL_QuartzVideo.h"
 #include "SDL_QuartzWindow.h"
 
+/* functions called in RunThread */
+void* QZ_allocPool() {
+    NSAutoreleasePool	*pool = [[NSAutoreleasePool alloc] init];
+    return (void *)pool;
+}
+
+void QZ_freePool(void *p) {
+    NSAutoreleasePool	*pool = (NSAutoreleasePool *)p;
+    [pool release];
+}
+ 
+
 /* These APIs aren't just deprecated; they're gone from the headers in the
    10.7 SDK. If we're using a >= 10.7 SDK, but targeting < 10.7, then we
    force these function declarations. */

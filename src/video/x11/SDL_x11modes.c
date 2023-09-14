@@ -928,6 +928,13 @@ void X11_FreeVideoModes(_THIS)
 #endif /* SDL_VIDEO_DRIVER_X11_XRANDR */
 }
 
+int X11_GetDesktopMode(_THIS, int *width, int *height)
+{
+	*width = DisplayWidth(SDL_Display, SDL_Screen);
+	*height = DisplayHeight(SDL_Display, SDL_Screen);
+	return 1;
+}
+
 int X11_ResizeFullScreen(_THIS)
 {
     int x = 0, y = 0;

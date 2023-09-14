@@ -300,3 +300,15 @@ int WIN_GetWMInfo(_THIS, SDL_SysWMinfo *info)
 		return(-1);
 	}
 }
+
+int WIN_GetDesktopMode(_THIS, int *width, int *height)
+{
+	DEVMODE dm;
+	if (EnumDisplaySettings(NULL, ENUM_CURRENT_SETTINGS, &dm)) {
+		*width = dm.dmPelsWidth;
+		*height = dm.dmPelsHeight;
+		return 1;
+	} else {
+		return 0;
+	}
+}

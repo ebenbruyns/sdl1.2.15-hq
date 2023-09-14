@@ -44,7 +44,18 @@ Uint32 riscos_main_thread = 0; /* Thread running events */
 
 static void *RunThread(void *data)
 {
+#ifdef SDL_VIDEO_DRIVER_QUARTZ
+    extern void* QZ_allocPool();
+    extern void QZ_freePool(void *p);
+    void *pool = QZ_allocPool();
+#endif
+
 	SDL_RunThread(data);
+
+#ifdef SDL_VIDEO_DRIVER_QUARTZ
+    QZ_freePool(pool);
+#endif
+
 	pthread_exit((void*)0);
 	return((void *)0);		/* Prevent compiler warning */
 }

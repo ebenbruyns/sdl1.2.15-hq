@@ -132,6 +132,7 @@ static SDL_VideoDevice *X11_CreateDevice(int devindex)
 		/* Set the function pointers */
 		device->VideoInit = X11_VideoInit;
 		device->ListModes = X11_ListModes;
+		device->GetDesktopMode = X11_GetDesktopMode;
 		device->SetVideoMode = X11_SetVideoMode;
 		device->ToggleFullScreen = X11_ToggleFullScreen;
 		device->UpdateMouse = X11_UpdateMouse;
